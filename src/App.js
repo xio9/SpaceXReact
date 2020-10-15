@@ -1,5 +1,8 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
 import Header from "./components/Header/Header";
+import Home from './components/Home/Home'
 import Main from "./components/Main/Main";
 import Features from "./components/Features/Features";
 import Footer from "./components/Footer/Footer";
@@ -18,10 +21,12 @@ class App extends React.Component {
     rocket: 'Falcon 1',
     rocketFeatures: null,
     rockets: [],
+    company: null,
   };
 
   componentDidMount() {
     this.updateRocket();
+    this.updateCompany();
   }
 
   updateRocket() {
@@ -41,14 +46,20 @@ class App extends React.Component {
     }, this.updateRocket);
   }
 
+  updateCompany = () => {
+    this.FetchData.getCompany()
+      .then(company => this.setState({ company }))
+  }
+
   render(){
     console.log(this.state)
     return(
       <>
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket}/>
+        {this.state.company && <Home company={this.state.company}/>}
         <Main rocket={this.state.rocket}/>
         {this.state.rocketFeatures && <Features {...this.state.rocketFeatures} />}
-        <Footer />
+        {this.state.company && <Footer {...this.state.company.links} />}
       </>
     );
   }

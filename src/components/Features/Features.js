@@ -2,6 +2,13 @@ import React from 'react';
 import RelaxWrapper from 'react-rellax-wrapper';
 import './features.css';
 
+const rocketImages = {
+	'Falcon 1': 'falcon-1',
+	'Falcon 9': 'falcon-9',
+	'Falcon Heavy': 'falcon-heavy',
+	'Starship': 'starship'
+} 
+
 const Features = (props) => {
 	
 	const {name, height, diameter, mass, payload_weights: payloadWeights, description} = props;
@@ -41,7 +48,7 @@ const Features = (props) => {
 				</table>
 				<RelaxWrapper speed={14}>
 				<img
-						src="img/falcon-1.png"
+						src={`img/${rocketImages[name]}.png`}
 						alt="rocket"
 						className="rocket"
 				/>
