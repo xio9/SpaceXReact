@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from "./components/Header/Header";
 import Home from './components/Home/Home'
@@ -54,13 +54,28 @@ class App extends React.Component {
   render(){
     console.log(this.state)
     return(
-      <>
+      <BrowserRouter>
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket}/>
-        {this.state.company && <Home company={this.state.company}/>}
+
+        <Route exact path='/'> {this.state.company && <Home company={this.state.company}/>}
+        </Route>
+        
+        <Route path='/rocket'>
         <Main rocket={this.state.rocket}/>
         {this.state.rocketFeatures && <Features {...this.state.rocketFeatures} />}
+        </Route>
+
+        <Route path="/calendar">
+          <Main />
+          <Calendar />
+        </Route>
+
+        <Route path="/details">
+          <Main />
+          <Details />
+        </Route>
         {this.state.company && <Footer {...this.state.company.links} />}
-      </>
+      </BrowserRouter>
     );
   }
 }
