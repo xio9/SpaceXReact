@@ -66,7 +66,6 @@ class App extends React.Component {
         </Route>
 
         <Route path="/calendar">
-          <Main />
           <Calendar />
         </Route>
 
