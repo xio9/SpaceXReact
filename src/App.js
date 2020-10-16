@@ -57,8 +57,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Header rockets={this.state.rockets} changeRocket={this.changeRocket}/>
 
-        <Route exact path='/'> {this.state.company && <Home company={this.state.company}/>}
-        </Route>
+        <Route exact path='/' render={() =>this.state.company && <Home company={this.state.company} />} />
         
         <Route path='/rocket'>
         <Main rocket={this.state.rocket}/>
