@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../../logo.svg';
-import "./main.css";
+import './main.css';
 
 const video = {
     'Falcon 1': 'moon',
@@ -10,12 +10,11 @@ const video = {
 }
 
 
-const Main = ({rocket}) => (
+const Main = ({rocket, name}) => (
     <section className="main">
         <h1 className="title">
-            {rocket ? rocket : 'Календарь SpaceX'}
+            {name || rocket}
         </h1>
-
         {rocket && <div className="video-container">
             <video 
                 className="video" 
@@ -25,7 +24,6 @@ const Main = ({rocket}) => (
                     video.other}.mp4`}/>
         </div>}
     </section>
-    )
-;
+);              
 
 export default Main;
